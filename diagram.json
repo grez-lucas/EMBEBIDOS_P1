@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 14.3,
+      "left": -5,
+      "attrs": { "env": "micropython-20220618-v1.19.1" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -283.47,
+      "left": -113.53,
+      "attrs": { "background": "blue", "color": "white", "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -98.23,
+      "left": 61.86,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": -233.82,
+      "left": 279.99,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": -98.92,
+      "left": -78.92,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-12.49", "v269.86" ] ],
+    [ "lcd1:VCC", "esp:VIN", "red", [ "h-22.79", "v318.23" ] ],
+    [ "lcd1:SDA", "esp:D21", "green", [ "h-34.68", "v-66.98", "h356.68", "v245.71" ] ],
+    [ "lcd1:SCL", "esp:D22", "green", [ "h-54.49", "v-89.16", "h404.24", "v262.36", "h-143.92" ] ],
+    [ "btn3:2.r", "esp:GND.1", "green", [ "h6.14", "v35.04", "h324.77", "v195.38", "h-222.69" ] ],
+    [ "btn1:2.r", "esp:GND.1", "green", [ "h-3.56", "v-0.61", "h193.3", "v230.14" ] ],
+    [ "btn3:1.r", "esp:D27", "green", [ "v0.52", "h17.09", "v-25.63", "h-93.41", "v187.97" ] ],
+    [ "btn1:1.r", "esp:D14", "green", [ "v0.4", "h38.08", "v-33.61", "h-269.42", "v255.18" ] ]
+  ],
+  "dependencies": {}
+}
