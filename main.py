@@ -1,10 +1,12 @@
 import time
 import i2c_lcd
 from machine import I2C
+from hx711 import HX711
 
 # Global vars
 
-
+hx = HX711()
+hx.tare()
 choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
 food_picked = 'Peanuts'
 amount_picked_index = 0
@@ -49,3 +51,9 @@ while True:
     if not changePortionBtn.value():
         print("Changing portion...")
         change_portion()
+    if not enterButton.value():
+        while True:
+            reading = hx.hx.get_units(10)
+            #movimiento motor s1.step(50)
+            if reading > (choices[food_picked]*amount_picked_index*5):
+                break
