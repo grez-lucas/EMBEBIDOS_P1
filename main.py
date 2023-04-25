@@ -5,7 +5,7 @@ from machine import I2C
 # Global vars
 
 
-choices = {'Peanuts': [50,70,90], 'Raisins': [30,40,50], 'Nuts': [60,90,100]}
+choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
 food_picked = 'Peanuts'
 amount_picked_index = 0
 
@@ -13,15 +13,15 @@ amount_picked_index = 0
 
 def print_status():
     lcd.clear()
-    lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked][amount_picked_index]) + " g")
+    lcd.putstr(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
     sleep(1)
 
 def change_food():
     global food_picked
     if food_picked == 'Peanuts':
-        food_picked = 'Raisins'
-    elif food_picked == 'Raisins':
-        food_picked = 'Nuts'
+        food_picked = 'Almonds'
+    elif food_picked == 'Almonds':
+        food_picked = 'Nuts  '
     else:
         food_picked = 'Peanuts'
     print_status()
@@ -37,7 +37,7 @@ def change_portion():
 
 # Start lcd with initial values
 lcd.custom_char(1, face)
-lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked][amount_picked_index]) + " g")
+lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
 sleep(2)
 
 #changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
