@@ -1,7 +1,7 @@
 from machine import Pin, enable_irq, disable_irq, idle
 
 class HX711:
-    def __init__(self, dout=5, pd_sck=4, gain=128):
+    def __init__(self, dout=18, pd_sck=19, gain=128):
 
         self.pSCK = Pin(pd_sck , mode=Pin.OUT)
         self.pOUT = Pin(dout, mode=Pin.IN, pull=Pin.PULL_DOWN)
