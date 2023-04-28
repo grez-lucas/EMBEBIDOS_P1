@@ -1,6 +1,5 @@
 import utime
 import gc
-
 from lcd_api import LcdApi
 from machine import I2C
 

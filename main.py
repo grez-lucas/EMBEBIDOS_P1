@@ -1,8 +1,6 @@
 import time
-import i2c_lcd as lcd
 from machine import I2C
 from hx711 import HX711
-import Stepper
 # from machine import Pin
 
 # Global vars
@@ -12,13 +10,12 @@ hx.tare()
 choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
 food_picked = 'Peanuts'
 amount_picked_index = 0
-# s1 = Stepper.create(Pin(16,Pin.OUT),Pin(17,Pin.OUT),Pin(5,Pin.OUT),Pin(18,Pin.OUT))
 
 # functions
 
 def print_status():
     lcd.clear()
-    lcd.putstr(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
+    # lcd.putstr(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
     sleep(1)
 
 def change_food():
@@ -42,7 +39,7 @@ def change_portion():
 
 # Start lcd with initial values
 # lcd.custom_char(1, face)
-lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
+# lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
 sleep(2)
 
 #changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
@@ -50,14 +47,17 @@ sleep(2)
 while True:
     if not changeFoodBtn.value():
         print("Changing food..")
-        change_food()
+        # change_food()
     if not changePortionBtn.value():
         print("Changing portion...")
-        change_portion()
+        # change_portion()
     if not enterBtn.value():
-        while True:
-            reading = hx.get_units(10)
-            print('FUNCIONOOOOOOOOOO')
-            # s1.step(50)
-            if reading > (choices[food_picked]*amount_picked_index*5):
-                break
+        print("boton3")
+        s1.step(1000)
+        time.sleep(2)
+        # while True:
+        #     reading = hx.get_units(10)
+        #     print('FUNCIONOOOOOOOOOO')
+        #     # s1.step(50)
+        #     if reading > (choices[food_picked]*amount_picked_index*5):
+        #         break
