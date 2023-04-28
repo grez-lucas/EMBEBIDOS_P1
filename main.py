@@ -14,7 +14,7 @@ amount_picked_index = 0
 # functions
 
 def print_status():
-    lcd.clear()
+    #lcd.clear()
     # lcd.putstr(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
     sleep(1)
 
@@ -47,17 +47,18 @@ sleep(2)
 while True:
     if not changeFoodBtn.value():
         print("Changing food..")
-        # change_food()
+        change_food()
     if not changePortionBtn.value():
         print("Changing portion...")
-        # change_portion()
+        change_portion()
     if not enterBtn.value():
         print("boton3")
-        s1.step(1000)
-        time.sleep(2)
-        # while True:
-        #     reading = hx.get_units(10)
-        #     print('FUNCIONOOOOOOOOOO')
-        #     # s1.step(50)
-        #     if reading > (choices[food_picked]*amount_picked_index*5):
-        #         break
+        # s1.step(1000)
+        # time.sleep(2)
+        print(choices[food_picked]*amount_picked_index)
+        while True:
+            reading = hx.get_units(10)
+            print(reading)
+            s1.step(200)
+            if reading > (choices[food_picked]*amount_picked_index*5):
+                break
