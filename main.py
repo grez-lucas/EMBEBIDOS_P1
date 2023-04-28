@@ -45,6 +45,12 @@ sleep(2)
 #changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
 
 while True:
+    valor = ldr.value()
+    print(valor)
+    if valor <160:
+        led.on()
+    else:
+        led.off()
     if not changeFoodBtn.value():
         print("Changing food..")
         change_food()

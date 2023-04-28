@@ -4,12 +4,13 @@ from lcd_api import LcdApi
 from i2c_lcd import I2cLcd
 from time import sleep
 import Stepper
-
+from ldr import LDR
 
 # led setup
 
-led = machine.Pin(2, machine.Pin.OUT)
-
+led = machine.Pin(15, machine.Pin.OUT)
+ldr = LDR(12)
+led = machine.Pin(14,machine.Pin.OUT)
 
 # 16x2 LCD Screen setup
 
