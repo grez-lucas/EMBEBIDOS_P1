@@ -1,7 +1,6 @@
 import machine
-# from machine import Pin, SoftI2C
-from lcd_api import LcdApi
-from i2c_lcd import I2cLcd
+from lcd_i2c import LCD
+from machine import Pin, I2C
 from time import sleep
 import Stepper
 from ldr import LDR
@@ -14,15 +13,16 @@ led = machine.Pin(14,machine.Pin.OUT)
 
 # 16x2 LCD Screen setup
 
-""" I2C_ADDR = 0x27
-totalRows = 2
-totalColumns = 16 """
+I2C_ADDR = 0x27
+I2C_NUM_ROWS = 2
+I2C_NUM_COLS = 16
+FREQ = 800000
 
 s1 = Stepper.create(machine.Pin(32,machine.Pin.OUT),machine.Pin(33,machine.Pin.OUT),machine.Pin(25,machine.Pin.OUT),machine.Pin(26,machine.Pin.OUT))
-#i2c = SoftI2C(scl=Pin(22), sda=Pin(21), freq=10000)
 
-# lcd = I2cLcd(i2c, I2C_ADDR, totalRows, totalColumns)
 
+i2c = I2C(1, scl=Pin(21), sda=Pin(22), freq=FREQ)
+lcd = LCD(addr=I2C_ADDR, cols=I2C_NUM_COLS, rows=I2C_NUM_ROWS, i2c=i2c)
 # face = bytearray([0x00,0x00,0x0A,0x00,0x11,0x0E,0x00,0x00])
 
 # Button setup

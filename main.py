@@ -1,5 +1,4 @@
 import time
-from machine import I2C
 from hx711 import HX711
 # from machine import Pin
 
@@ -7,6 +6,9 @@ from hx711 import HX711
 
 hx = HX711()
 hx.tare()
+
+lcd.begin()
+
 choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
 food_picked = 'Peanuts'
 amount_picked_index = 0
@@ -14,8 +16,8 @@ amount_picked_index = 0
 # functions
 
 def print_status():
-    #lcd.clear()
-    # lcd.putstr(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
+    lcd.clear()
+    lcd.print(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
     sleep(1)
 
 def change_food():
@@ -39,7 +41,7 @@ def change_portion():
 
 # Start lcd with initial values
 # lcd.custom_char(1, face)
-# lcd.putstr(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
+lcd.print(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
 sleep(2)
 
 #changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
