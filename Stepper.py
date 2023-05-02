@@ -21,7 +21,7 @@ class Stepper:
         [0, 1, 0, 1],
         [1, 0, 0, 1]
     ]
-    def __init__(self, mode, pin1, pin2, pin3, pin4, delay):
+    def __init__(self, mode, pin1, pin2, pin3, pin4, delay = 1):
     	if mode=='FULL_STEP':
             self.mode = self.FULL_STEP
         else:

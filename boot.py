@@ -23,7 +23,6 @@ s1 = Stepper.create(machine.Pin(32,machine.Pin.OUT),machine.Pin(33,machine.Pin.O
 
 i2c = I2C(1, scl=Pin(21), sda=Pin(22), freq=FREQ)
 lcd = LCD(addr=I2C_ADDR, cols=I2C_NUM_COLS, rows=I2C_NUM_ROWS, i2c=i2c)
-# face = bytearray([0x00,0x00,0x0A,0x00,0x11,0x0E,0x00,0x00])
 
 # Button setup
 

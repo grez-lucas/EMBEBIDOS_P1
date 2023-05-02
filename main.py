@@ -7,6 +7,7 @@ from hx711 import HX711
 hx = HX711()
 hx.tare()
 
+
 lcd.begin()
 
 choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
@@ -14,6 +15,21 @@ food_picked = 'Peanuts'
 amount_picked_index = 0
 
 # functions
+def startup_message():
+    lcd.clear()
+    lcd.set_cursor(col=0, row=0)
+    lcd.print(" Food Dispenser")
+
+
+    lcd.create_char(
+    location=0,
+    charmap=[0x00, 0x00, 0x11, 0x04, 0x04, 0x11, 0x0E, 0x00]
+)
+    lcd.set_cursor(col=0, row=1)
+    lcd.print("Starting...  " + chr(0))
+
+    sleep(4)
+
 
 def print_status():
     lcd.clear()
@@ -44,8 +60,8 @@ def change_portion():
 
 # Start lcd with initial values
 # lcd.custom_char(1, face)
+startup_message()
 print_status()
-#changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
 
 while True:
     valor = ldr.value()
@@ -61,13 +77,14 @@ while True:
         print("Changing portion...")
         change_portion()
     if not enterBtn.value():
-        print("boton3")
+        print("Dispensing...")
         # s1.step(1000)
         # time.sleep(2)
-        print(choices[food_picked]*amount_picked_index)
+        # print(choices[food_picked]*amount_picked_index)
         while True:
             reading = hx.get_units(10)
-            print(reading)
+            print(reading, (choices[food_picked]*(amount_picked_index+1)*5))
             s1.step(200)
-            if reading > (choices[food_picked]*amount_picked_index*5):
+            if reading > (choices[food_picked]*(amount_picked_index+1)*5):
+                print("Done dispensing")
                 break
