@@ -17,8 +17,11 @@ amount_picked_index = 0
 
 def print_status():
     lcd.clear()
-    lcd.print(" Food: " + food_picked +"\n   Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
-    sleep(1)
+    lcd.set_cursor(col=0, row=0)
+    lcd.print(" Food: " + food_picked)
+    lcd.set_cursor(col=0, row=1)
+    lcd.print("Portion: " + str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
+    sleep(0.5)
 
 def change_food():
     global food_picked
@@ -41,14 +44,12 @@ def change_portion():
 
 # Start lcd with initial values
 # lcd.custom_char(1, face)
-lcd.print(" Food: " + food_picked +"\n Portion: "+ str(choices[food_picked]) + "g x"+str(amount_picked_index+1))
-sleep(2)
-
+print_status()
 #changeFoodBtn.irq(trigger = machine.Pin.IRQ_FALLING, handler = change_food)
 
 while True:
     valor = ldr.value()
-    print(valor)
+    # print(valor)
     if valor <160:
         led.on()
     else:
