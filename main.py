@@ -5,10 +5,14 @@ from hx711 import HX711
 # Global vars
 
 hx = HX711()
+#hx.set_scale(hx)
 hx.tare()
 
 
 lcd.begin()
+ 
+led_red.on()
+led_red.value(1)
 
 choices = {'Peanuts': 50, 'Almonds': 80, 'Nuts  ': 100}
 food_picked = 'Peanuts'
@@ -80,13 +84,23 @@ while True:
         change_portion()
     if not enterBtn.value():
         print("Dispensing...")
-        # s1.step(1000)
-        # time.sleep(2)
-        # print(choices[food_picked]*amount_picked_index)
+
+        if food_picked == 'Peanuts':
+            for i in list(range(amount_picked_index+1)):
+                s1.step(500)
+        elif food_picked == 'Almonds':
+            for i in list(range(amount_picked_index+1)):
+                s1.step(500)
+        elif food_picked == 'Nuts  ':
+            for i in list(range(amount_picked_index+1)):
+                s1.step(500)
+            """
         while True:
             reading = hx.get_units(10)
             print(reading, (choices[food_picked]*(amount_picked_index+1)*5))
             s1.step(200)
-            if reading > (choices[food_picked]*(amount_picked_index+1)*5):
+            if reading > (choices[food_picked]*(amount_picked_index+1)*100):
                 print("Done dispensing")
                 break
+"""
+            

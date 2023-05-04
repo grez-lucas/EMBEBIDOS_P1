@@ -7,8 +7,8 @@ from ldr import LDR
 
 # led setup
 
-led_red = machine.Pin(15, machine.Pin.OUT)
-led_green = machine.Pin(14,machine.Pin.OUT)
+led_red = machine.Pin(14, machine.Pin.OUT)
+led_green = machine.Pin(12,machine.Pin.OUT)
 ldr = LDR(12)
 
 # 16x2 LCD Screen setup
