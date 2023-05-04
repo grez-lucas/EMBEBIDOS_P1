@@ -67,9 +67,11 @@ while True:
     valor = ldr.value()
     # print(valor)
     if valor <160:
-        led.on()
+        led_red.on()
+        led_green.off()
     else:
-        led.off()
+        led_green.on()
+        led_red.off()
     if not changeFoodBtn.value():
         print("Changing food..")
         change_food()
